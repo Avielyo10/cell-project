@@ -24,7 +24,7 @@ public class scans extends ArrayList<scan> {
 	 */
 	public static scans createDs(String path) throws IOException {
 		scans csvLines = new scans();
-		int j =0;
+//		int j =0;
 		File folder = new File(path);//take folder
 		File[] listOfFiles = folder.listFiles();{//create array of files in this folder
 			for (int i = 0; i < listOfFiles.length; i++) {//Iterate the files
@@ -36,8 +36,8 @@ public class scans extends ArrayList<scan> {
 					String data;
 					while ((data=br.readLine())!= null) {
 						scan line = new scan(data);
-						csvLines.add(j, line);//adding lines 
-						j++;
+						csvLines.add(line);//adding lines 
+//						j++;
 					}
 					in.close();
 				}
