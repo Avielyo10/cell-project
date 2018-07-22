@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class scan {
 	private ArrayList<String> scan;
+	String name;
 	String userId;
 	String deviceId;
 	String startTime;

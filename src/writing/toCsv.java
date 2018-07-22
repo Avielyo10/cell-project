@@ -22,7 +22,7 @@ public class toCsv {
 	@SuppressWarnings("null")
 	public static void writeToCsv(scans finalScans) throws IOException {
 		ArrayList<scan> finalCsv = finalScans;
-		String fileName = "out_";
+		String fileName = "out";
 		fileName+=".csv";
 		@SuppressWarnings("deprecation")
 		CSVWriter writer = new CSVWriter(new FileWriter(fileName), ',');//writing finished csv

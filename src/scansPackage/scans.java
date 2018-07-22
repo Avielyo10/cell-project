@@ -36,6 +36,7 @@ public class scans extends ArrayList<scan> {
 					String data;
 					while ((data=br.readLine())!= null) {
 						scan line = new scan(data);
+						line.name = file.getName();
 						csvLines.add(line);//adding lines 
 //						j++;
 					}

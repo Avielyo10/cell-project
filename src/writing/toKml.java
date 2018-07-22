@@ -19,20 +19,18 @@ public class toKml {
 	 * @param dataLists
 	 * @throws IOException
 	 */
-	public static void writeToKml(scans dataLists, String fileName) throws IOException {
-		if(!fileName.endsWith(".kml")) {
-			fileName+=".kml";
-		}
+	public static void writeToKml(scans dataLists) throws IOException {
+		String fileName = "out";
+		fileName+=".kml";
 		final Kml kml = new Kml();
-		Document doc = kml.createAndSetDocument().withName("newKmls");
+		Document doc = kml.createAndSetDocument().withName("cell scans");
 		for (int i = 0; i < dataLists.size(); i++) {
-			int _numHop = Integer.valueOf(dataLists.get(i).getNumOfNet())*4;
-			for (int j = 0; j < _numHop; j+=4) {
-				Placemark placemark = doc.createAndAddPlacemark().withName(dataLists.get(i).getScan().get(6+j).replaceAll("&", "&amp;"));
-				placemark.createAndSetPoint()
-				.addToCoordinates(Double.parseDouble(dataLists.get(i).getLon()), Double.parseDouble(dataLists.get(i).getLat()));
-				placemark.createAndSetTimeStamp().withWhen(dataLists.get(i).getTime());
-			}
+			String name = dataLists.get(i).getUserId();
+			name = name.substring(1, name.length()-1);
+			Placemark placemark = doc.createAndAddPlacemark().withName(name.replaceAll("&", "&amp;"));
+			placemark.createAndSetPoint()
+			.addToCoordinates(Double.parseDouble(dataLists.get(i).getGps_longitude()), Double.parseDouble(dataLists.get(i).getGps_latitude()));
+			placemark.createAndSetTimeStamp().withWhen(dataLists.get(i).getStartTime());
 		}
 		kml.marshal(new File(fileName));
 	}
